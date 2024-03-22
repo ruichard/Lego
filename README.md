@@ -17,6 +17,9 @@ Lego consists of two parts:
     + lego-test:
         - Provide unit testing environment for projects
 
+## Project structure
+![Design](lego-ps.jpeg)
+
 ## Quick start
 ### 1. Project creation and component declaration：
 &ensp;&ensp;(1) Create or use one or more existing Android Library Modules as "component projects" (demo_component_detail, DEMO_component_home, etc. in Demo code) for developing real business logic.
