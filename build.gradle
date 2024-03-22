@@ -1,0 +1,76 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'lego'
+// ./gradlew publishLegoDevHomeRContextLib -Prpubversion=1.0.0
+
+buildscript {
+    ext {
+        lego_tmp_lib_dir = uri('./lego_libs_repository').path // default:./lego_libs
+//        lego_tmp_lib_dir_mode = false  // default: false
+
+        lego_maven_repository = "http://xxxxxx/repository/releases/"
+        lego_maven_username = "xxx"
+        lego_maven_password = "xxx"
+        lego_maven_local_repository = uri('./lego_maven_local_repository').path
+
+//        lego_use_reset_compiler = true // default: false
+
+//        lego_publish_context_lib_source = true // default: true
+
+//        lego_kapt_version = "com.lego:kapt:xxx"   //  @see version.gradle in this demo
+//        lego_router_version = "com.lego:router:xxx"   //  @see version.gradle in this demo
+//        lego_plugins_version = "com.lego:plugins:xxx"   //  @see version.gradle in this demo
+
+//        lego_kapt_source_folder = "generated/source/kaptKotlin"
+
+//        lego_clean_before_task = false  // default: true
+
+        lego_auto_generate_aggregate = true   // default: false
+
+        lego_generate_aggregate_in_build_dir = false  // default: true
+//                           only usable whenlego_auto_generate_aggregate = true
+
+        lego_generate_router_context = true   // default: false
+
+//        lego_extension_name = "rk"
+
+//        lego_auto_apply_root_plugin = false   // default: true
+
+        lego_auto_apply_test_plugin = true    // default: false
+
+        lego_config_file_dirs = [uri('./demo').path]
+
+//        modules_snapshot_enable = true   // default: false
+        modules_snapshot_maven_default_group_id = "com.mars.module.demo"
+//        modules_snapshot_local_mode = false   // default: true
+//        modules_snapshot_local_no_maven_mode = true   // default: false
+
+        lego_github_maven_repository = "https://maven.pkg.github.com/richard/lego/"
+        lego_github_maven_username = "xxx"
+        lego_github_maven_password = "xxx"
+
+//        lego_enable_check_router_version = true // default: false
+
+    }
+
+    apply from: 'versions.gradle'
+
+    addRepos(repositories)
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$agbt_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        classpath lego_plugins_version
+        classpath deps.ktnail.plugins
+    }
+}
+
+allprojects {
+    addRepos(repositories)
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+apply from: 'version-tasks.gradle'

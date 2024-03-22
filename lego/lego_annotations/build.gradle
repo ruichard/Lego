@@ -1,0 +1,34 @@
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(GenerateModuleMetadata) {
+    enabled = false
+}
+
+publishing {
+    publications {
+        legoAnnotations(MavenPublication) {
+            groupId "com.lego"
+            artifactId 'annotations'
+            version pubs.lego.annotations
+            description 'annotations'
+            from components.java
+        }
+    }
+
+    apply from: '../lego_maven_repositories.gradle'
+    addLegoMavenRepos(repositories)
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

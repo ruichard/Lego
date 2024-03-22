@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.lego</groupId>
+  <artifactId>annotations</artifactId>
+  <versioning>
+    <latest>1.9.0.1.T-LOCAL</latest>
+    <release>1.9.0.1.T-LOCAL</release>
+    <versions>
+      <version>1.8.3.1</version>
+      <version>1.8.3.1-LOCAL</version>
+      <version>1.8.12.1.T-LOCAL</version>
+      <version>1.9.0.1.T-LOCAL</version>
+    </versions>
+    <lastUpdated>20220718075932</lastUpdated>
+  </versioning>
+</metadata>

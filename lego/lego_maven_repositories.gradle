@@ -1,0 +1,28 @@
+def addLegoMavenRepos(RepositoryHandler handler) {
+    if (legoUseLocalMaven) {
+        handler.maven {
+            name 'local'
+            url lego_maven_local_repository
+        }
+    } else if(legoUseGithubMaven){
+        handler.maven {
+            name 'github'
+            url lego_github_maven_repository
+            credentials {
+                username lego_github_maven_username
+                password lego_github_maven_password
+            }
+        }
+    } else {
+        handler.maven {
+            name 'remote'
+            url lego_maven_repository
+            credentials {
+                username lego_maven_username
+                password lego_maven_password
+            }
+        }
+    }
+}
+
+ext.addLegoMavenRepos = this.&addLegoMavenRepos

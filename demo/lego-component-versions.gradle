@@ -1,0 +1,20 @@
+lego {
+    global {
+        devMode true
+        maven {
+            variant 'release'
+            version('demo://com.mars.lego-test.detail', '0.1.4') {
+                publish '0.1.4'
+            }
+            version('demo://com.mars.lego-test.detail-java', '0.1.4') {
+                publish '0.1.4'
+            }
+            version('demo://com.mars.lego-test.a-other-detail', '0.0.0') {
+                publish '0.0.0'
+            }
+            version('demo://com.mars.lego-test.home', '0.1.4') {
+                publish '0.1.4'
+            }
+        }
+    }
+}

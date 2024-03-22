@@ -1,0 +1,128 @@
+apply plugin: 'ktnail-tasklink'
+
+ktnail {
+    taskLink(publishLegoTaskPrefix + "Annotations" + publishLocalSuffix) {
+        group = "publish_lego_annotations"
+        task(":lego:lego_annotations", "build")
+        task(":lego:lego_annotations", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Annotations") {
+        group = "publish_lego_annotations"
+        task(":lego:lego_annotations", "build")
+        task(":lego:lego_annotations", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Libraries" + publishK1_3Suffix + publishLocalSuffix) {
+        group = "publish_lego_libraries"
+        task(":lego:lego_plugins", "build")
+        task(":lego:lego_plugins", "publish")
+        task(":lego:lego_kapt", "build")
+        task(":lego:lego_kapt", "publish")
+        task(":lego:lego_router", "build")
+        task(":lego:lego_router", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Libraries" + publishK1_3Suffix) {
+        group = "publish_lego_libraries"
+        task(":lego:lego_plugins", "build")
+        task(":lego:lego_plugins", "publish")
+        task(":lego:lego_kapt", "build")
+        task(":lego:lego_kapt", "publish")
+        task(":lego:lego_router", "build")
+        task(":lego:lego_router", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Libraries" + publishK1_5Suffix + publishLocalSuffix) {
+        group = "publish_lego_libraries"
+        task(":lego:lego_plugins", "build")
+        task(":lego:lego_plugins", "publish")
+        task(":lego:lego_kapt", "build")
+        task(":lego:lego_kapt", "publish")
+        task(":lego:lego_router", "build")
+        task(":lego:lego_router", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Libraries" + publishK1_5Suffix) {
+        group = "publish_lego_libraries"
+        task(":lego:lego_plugins", "build")
+        task(":lego:lego_plugins", "publish")
+        task(":lego:lego_kapt", "build")
+        task(":lego:lego_kapt", "publish")
+        task(":lego:lego_router", "build")
+        task(":lego:lego_router", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Plugins" + publishK1_3Suffix + publishLocalSuffix) {
+        group = "publish_lego_plugins"
+        task(":lego:lego_plugins", "build")
+        task(":lego:lego_plugins", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Plugins" + publishK1_3Suffix) {
+        group = "publish_lego_plugins"
+        task(":lego:lego_plugins", "build")
+        task(":lego:lego_plugins", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Plugins" + publishK1_5Suffix + publishLocalSuffix) {
+        group = "publish_lego_plugins"
+        task(":lego:lego_plugins", "build")
+        task(":lego:lego_plugins", "publish")
+    }
+
+
+    taskLink(publishLegoTaskPrefix + "Plugins" + publishK1_5Suffix) {
+        group = "publish_lego_plugins"
+        task(":lego:lego_plugins", "build")
+        task(":lego:lego_plugins", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Kapts" + publishK1_3Suffix + publishLocalSuffix) {
+        group = "publish_lego_kapts"
+        task(":lego:lego_kapt", "build")
+        task(":lego:lego_kapt", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Kapts" + publishK1_3Suffix) {
+        group = "publish_lego_kapts"
+        task(":lego:lego_kapt", "build")
+        task(":lego:lego_kapt", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Kapts" + publishK1_5Suffix + publishLocalSuffix) {
+        group = "publish_lego_kapts"
+        task(":lego:lego_kapt", "build")
+        task(":lego:lego_kapt", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Kapts" + publishK1_5Suffix) {
+        group = "publish_lego_kapts"
+        task(":lego:lego_kapt", "build")
+        task(":lego:lego_kapt", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Router" + publishK1_3Suffix + publishLocalSuffix) {
+        group = "publish_lego_router"
+        task(":lego:lego_router", "build")
+        task(":lego:lego_router", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Router" + publishK1_3Suffix) {
+        group = "publish_lego_router"
+        task(":lego:lego_router", "build")
+        task(":lego:lego_router", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Router" + publishK1_5Suffix + publishLocalSuffix) {
+        group = "publish_lego_router"
+        task(":lego:lego_router", "build")
+        task(":lego:lego_router", "publish")
+    }
+
+    taskLink(publishLegoTaskPrefix + "Router" + publishK1_5Suffix) {
+        group = "publish_lego_router"
+        task(":lego:lego_router", "build")
+        task(":lego:lego_router", "publish")
+    }
+}

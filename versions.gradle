@@ -1,0 +1,109 @@
+ext.legoUseLocalMaven = false
+ext.useKotlinV1_3 = true
+ext.useAGBT3 = false
+ext.legoUseGithubMaven = true
+
+// version for dependency local
+//ext.router_dep =  "1.9.0.1.T"
+//ext.kapt_dep =  "1.9.0.1.T"
+//ext.plugins_dep = "1.9.0.1.T"
+//ext.annotations_dep = "1.9.0.1.T"
+
+//  version for publish
+//ext.router_pub = "1.9.0.1.T"
+//ext.kapt_pub = "1.9.0.1.T"
+//ext.plugins_pub = "1.9.0.1.T"
+//ext.annotations_pub = "1.9.0.1.T"
+
+// version for dependency remote
+ext.router_dep =  "1.9.1.1"
+ext.kapt_dep =  "1.9.1.1"
+ext.plugins_dep = "1.9.1.1"
+ext.annotations_dep = "1.9.1.1"
+
+// version for publish
+ext.router_pub = "1.9.1.1"
+ext.kapt_pub = "1.9.1.1"
+ext.plugins_pub = "1.9.1.1"
+ext.annotations_pub = "1.9.1.1"
+
+// version for dependency
+ext.blueprint = "4.0.4"
+ext.knt_x = "0.0.5"
+ext.knt_plugins = "0.0.12"
+
+ext.publishLegoTaskPrefix = "publish-LEGO-"
+ext.publishK1_3Suffix = "-K1_3"
+ext.publishK1_5Suffix = "-K1_5"
+ext.publishLocalSuffix = "-LOCAL"
+
+gradle.startParameter.taskNames.forEach {name->
+    if (name.startsWith(publishLegoTaskPrefix)) {
+        ext.useKotlinV1_3 = !name.contains(publishK1_5Suffix)
+        ext.legoUseLocalMaven = name.contains(publishLocalSuffix)
+    }
+}
+
+ext.pubs = [:]
+ext.deps = [:]
+
+if (ext.useKotlinV1_3) {
+    ext.kotlin_version = '1.3.72'
+    ext.kotlin_version_suffix = ext.publishK1_3Suffix
+} else {
+    ext.kotlin_version = '1.5.0'
+    ext.kotlin_version_suffix = ext.publishK1_5Suffix
+}
+if (ext.useAGBT3) {
+    ext.agbt_version = '3.4.0'
+    ext.agbt_version_suffix = '-AGBT3'
+} else {
+    ext.agbt_version = '4.0.1'
+    ext.agbt_version_suffix = '-AGBT4'
+}
+if (ext.legoUseLocalMaven) {
+    ext.local_version_suffix = ext.publishLocalSuffix
+} else {
+    ext.local_version_suffix = ''
+}
+
+def legoPubs = [:]
+legoPubs.router = router_pub + kotlin_version_suffix + local_version_suffix
+legoPubs.kapt = kapt_pub + kotlin_version_suffix + local_version_suffix
+legoPubs.plugins = plugins_pub + agbt_version_suffix + kotlin_version_suffix + local_version_suffix
+legoPubs.annotations = annotations_pub + local_version_suffix
+pubs.lego = legoPubs
+
+def legoDeps = [:]
+legoDeps.router = "com.lego:router:" + router_dep + kotlin_version_suffix + local_version_suffix
+legoDeps.kapt = "com.lego:kapt:" + kapt_dep + kotlin_version_suffix + local_version_suffix
+legoDeps.plugins = "com.lego:plugins:" + plugins_dep + agbt_version_suffix + kotlin_version_suffix + local_version_suffix
+legoDeps.annotations = "com.lego:annotations:" + annotations_dep + local_version_suffix
+deps.lego = legoDeps
+
+def kotlin = [:]
+kotlin.blueprint = "com.kotlin:blueprint:" + blueprint + kotlin_version_suffix
+deps.kotlin = kotlin
+
+def ktnailDeps = [:]
+ktnailDeps.x = "com.ktnail:x:" + knt_x + kotlin_version_suffix
+ktnailDeps.plugins = "com.ktnail:plugins:" + knt_plugins + agbt_version_suffix + kotlin_version_suffix
+deps.ktnail = ktnailDeps
+
+ext.lego_kapt_version = deps.lego.kapt
+ext.lego_router_version = deps.lego.router
+ext.lego_plugins_version = deps.lego.plugins
+
+def addRepos(RepositoryHandler handler) {
+    handler.maven { url lego_maven_repository }
+    handler.maven { url uri(lego_maven_local_repository) }
+    handler.maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+//    handler.maven { url lego_github_maven_repository }
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+}
+
+ext.addRepos = this.&addRepos
