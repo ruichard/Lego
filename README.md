@@ -83,8 +83,8 @@ class HomeActivity : AppCompatActivity() {
 navigate {
     uri = "app://com.myapp.detail/account/user"  // The request uri
     query { // Parameters of the request
-        "id" with 400
-        "name" with "CuiVincent" 
+        "id" with 101
+        "name" with "Ruichard" 
     }
     result<User?> { user -> 
     // The received data type is specified by generics, and multiple asynchronous returns can be received as multiple results
@@ -95,7 +95,7 @@ navigate {
 
 &ensp;&ensp;&ensp;&ensp;Via automatically generated image functions:
 ```kotlin
-DetailContext.Account.user(400, "CuiVincent" ) { user ->
+DetailContext.Account.user(101, "Ruichard" ) { user ->
     … // The parameter type and return value type of the automatically generated image function are clear, which is more binding than the DSL
 }
 ```
